@@ -59,14 +59,15 @@ body {
   height: 60vh;
   padding: 2%;
   border-radius: 5%;
-   box-shadow: 1px 1px 1px inset #112d42;
+  box-shadow: 1px 1px 1px inset #112d42;
   display: flex;
   flex-direction: column;
   justify-self: center;
 }
 
+a:hover,
 .card:hover {
-  box-shadow: 2px 2px 20px grey;
+  box-shadow: 2px 2px 20px #112d42;
 }
 
 .img {
@@ -119,11 +120,11 @@ button {
 }
 
 button:hover {
-  background-color: #2C83BE;
+  background-color: #2c83be;
 }
 
 button:active {
-  box-shadow: 2px 2px 20px #112D42;
+  box-shadow: 2px 2px 20px #112d42;
 }
 
 a {
@@ -141,10 +142,11 @@ footer {
 }
 
 @media (min-width: 480px) and (max-width: 1200px) {
-    .project, .pastime {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .project,
+  .pastime {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
@@ -158,5 +160,4 @@ footer {
     align-self: center;
     height: fit-content;
   }
-
 }
