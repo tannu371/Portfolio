@@ -9,6 +9,7 @@ body {
   background-color: rgb(17, 45, 66);
   color: white;
   height: 100vh;
+  width: auto;
   flex-wrap: nowrap;
   align-items: center;
 }
@@ -16,6 +17,7 @@ body {
 .hero * {
   font-family: "Pacifico", cursive;
   font-weight: 400;
+  line-height: 1.5;
 }
 
 .hero h1 {
@@ -27,7 +29,7 @@ body {
 }
 
 .mountain {
-  width: 100vh;
+  width: auto;
   padding-top: 15px;
 }
 
@@ -45,14 +47,13 @@ body {
 
 .project {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  gap: 40px;
   margin-bottom: 90px;
 }
 
 .project * {
-  width: 250px;
+  width: min(100%, 250px);
   height: 44vh;
   border-radius: 5%;
 }
@@ -89,7 +90,7 @@ h2 {
 }
 
 .pastime > * {
-  width: 250px;
+  width: min(100%, 250px);
   height: 250px;
   border-radius: 5%;
 }
@@ -137,9 +138,17 @@ a {
 }
 
 footer {
-  height:100px;
+  height: 100px;
   background-color: #112d42;
   margin-top: 20px;
   color: white;
   align-content: center;
+}
+
+@media (max-width: 768px) {
+  .project,
+  .pastime {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
 }
