@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: rgb(17, 45, 66);
-  color: white;
+  color: snow;
   height: 100vh;
   width: auto;
   flex-wrap: nowrap;
@@ -26,6 +26,9 @@ body {
 
 .hero p {
   font-size: x-large;
+  background: linear-gradient(to top, snow, #2F82BE);
+  background-clip: text;
+  color: transparent;
 }
 
 .mountain {
@@ -65,14 +68,30 @@ body {
   justify-self: center;
 }
 
-a:hover,
 .card:hover {
-  box-shadow: 2px 2px 20px #112d42;
+  box-shadow: 1px 1px 5px #112d42, -2px -2px 10px snow;
+}
+
+.wrapper {
+  display: flex;
+  gap: 1%;
+  height: 60%;
+  width: 250px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  box-shadow: 1px 1px 1px #112d42;
+}
+
+.img-card {
+  width: 250px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  flex-shrink: 0;
 }
 
 .img {
-  box-shadow: 1px 1px 1px #112d42;
   height: 60%;
+  box-shadow: 1px 1px 1px #112d42;
 }
 
 .content {
@@ -117,10 +136,12 @@ button {
   padding: 15px 32px;
   border-radius: 5%;
   margin: 20px 0px;
+  transition: 300ms ease;
 }
 
 button:hover {
   background-color: #2c83be;
+  box-shadow: 2px 2px 5px #112d42, -8px -8px 20px snow;
 }
 
 button:active {
