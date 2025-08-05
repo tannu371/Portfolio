@@ -1,6 +1,7 @@
 body {
   background-color: #d6f1fa;
   text-align: center;
+  justify-content: center;
 }
 
 .hero {
@@ -56,6 +57,11 @@ body {
   margin-bottom: 90px;
 }
 
+.project a {
+  color: black;
+  text-decoration: none;
+}
+
 .card {
   background-color: white;
   width: min(100%, 250px);
@@ -90,12 +96,23 @@ body {
 }
 
 .img {
-  height: 60%;
+  height: 55%;
   box-shadow: 1px 1px 1px #112d42;
 }
 
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .content {
-  height: 40%;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -104,7 +121,6 @@ body {
 h2 {
   color: #112d42;
   text-align: center;
-  font-size: xx-large;
 }
 
 h3 {
@@ -116,6 +132,7 @@ div p {
   margin: 0px 16px;
   font-size: 16px;
   line-height: 20px;
+  object-fit: contain;
 }
 
 hr {
@@ -130,6 +147,12 @@ button {
   border-radius: 5%;
   margin: 2% 0;
   transition: 300ms ease;
+}
+
+button a {
+  color: white;
+  font-weight: bolder;
+  text-decoration: none;
 }
 
 button:hover {
@@ -181,7 +204,7 @@ button:active {
   background-color: var(--accent-color);
   color: white;
   padding: 0.5em 1em;
-  border-radius: 5%;
+  border-radius: 100px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
   transform: translateY(-30px) rotate(25deg);
   opacity: 0;
@@ -206,12 +229,6 @@ button:active {
 .socials-container a:hover::after{
   transform: translateY(-42px) rotate(0);
   opacity: 1;
-}
-
-a {
-  color: white;
-  font-weight: bolder;
-  text-decoration: none;
 }
 
 footer {
