@@ -120,14 +120,7 @@ div p {
 
 hr {
   border: dotted #112d42;
-  margin: 15% 40% 15%;
-}
-
-.contact {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-content: center;
+  margin: 10% 40%;
 }
 
 button {
@@ -135,7 +128,7 @@ button {
   background-color: #112d42;
   padding: 15px 32px;
   border-radius: 5%;
-  margin: 20px 0px;
+  margin: 2% 0;
   transition: 300ms ease;
 }
 
@@ -146,6 +139,73 @@ button:hover {
 
 button:active {
   box-shadow: 2px 2px 20px #112d42;
+}
+
+.contact {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+}
+
+.socials-container {
+  display: flex;
+  gap: 2%;
+  justify-content: center;
+  margin: 5% 0;
+}
+
+.socials-container svg {
+  height: 32px;
+  width: 32px;
+}
+
+.socials-container a{
+  background-color: white;
+  padding: 1em;
+  border-radius: 20%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.socials-container a:hover{
+  background-color: var(--accent-color);
+  fill: white;
+}
+
+.socials-container a::before{
+  content: attr(data-social);
+  position: absolute;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-30px) rotate(25deg);
+  opacity: 0;
+  transition: 200ms cubic-bezier(.42,0,.44,1.68);
+}
+
+.socials-container a::after{
+  content: '';
+  position: absolute;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid var(--accent-color);
+  transform: translateY(0) rotate(25deg);
+  opacity: 0;
+  transition: 200ms cubic-bezier(.42,0,.44,1.68);
+}
+
+.socials-container a:hover::before{
+  transform: translateY(-65px) rotate(0);
+  opacity: 1;
+}
+.socials-container a:hover::after{
+  transform: translateY(-42px) rotate(0);
+  opacity: 1;
 }
 
 a {
