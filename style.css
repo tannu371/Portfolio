@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #d6f1fa;
   text-align: center;
@@ -374,14 +378,13 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    gap: 16px;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
   .navbar a {
     font-size: 0.85rem;
+  }
+
+  .navbar {
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
   .about {
