@@ -12,52 +12,93 @@
 </head>
 
 <body>
-    <div class="hero">
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#pastimes">Pastimes</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="hero" id="home">
         <img src="./assets/images/cloud.png" alt="Smily Cloud">
         <h1><img src="./assets/images/hand.gif" height="60" alt="Hi"> I'am Tannu</h1>
         <p> Aspiring Developer | Creative Thinker | Lifelong Learner</p>
-        <img class="mountain" src="./assets/images/mountain.png" height="300" alt="Ice Mountain with tree">
     </div>
 
-    <div class="about">
+    <div class="about" id="about">
 
-        <img src="" alt="profile photo">
+        <img class="profile-image" src="./assets/images/IMG_0134.PNG" alt="profile photo">
         <h1>Hello!</h1>
-        <p> I am Web Developer </p>
+        <p> I am a Frontend Engineer focused on building responsive, accessible, and performance-optimized user interfaces for the
+        web. I specialize in writing semantic HTML and maintainable CSS to translate UI/UX designs into clean, scalable layouts.
+        My work emphasizes cross-browser compatibility, mobile-first design, and accessibility best practices. I am passionate
+        about frontend engineering, continuous learning, and creating user-centric web experiences that are both visually clear
+        and technically robust.</p>
 
     </div>
 
-    <h1 style="text-align: center; font-size:xx-large">Projects</h1>
+    <section >
+    <h1 id="projects" >Projects</h1>
     <div class="project">
-        <a href="https://github.com/tannu371/BlogSy">
+        <a href="https://github.com/tannu371/BlogSy" class="card-link"></a>
         <div class=card>
+            
             <div class="img"><img src="./assets/images/blog.png"></div>
             <div class="content">
                 <h2>BlogSy</h2>
                 <p>Designed and implemented a blogging web application with a custom HTML/CSS frontend, server-side logic handled by
                 Node.js and Express, and PostgreSQL for persistent data storage.</p>
             </div>
+            
         </div>
         </a>
 
+        <a href="https://github.com/tannu371/Portfolio" class="card-link"></a>
         <div class=card>
-            <div class="img"></div>
-            <div class="content"></div>
+            <div class="img"><img src="./assets/images/portfolio.png"></div>
+            <div class="content">
+                <h2>Portfolio</h2>
+                <p>Designed and implemented a personal portfolio website with a custom HTML/CSS frontend, server-side logic handled by
+                Node.js and Express, and PostgreSQL for persistent data storage.</p>
+            </div>
+        </div>
+
+        </a>
+        <a href="https://github.com/tannu371/Portfolio" class="card-link"></a> 
+        <div class=card>
+            <div class="img"><img src="./assets/images/portfolio.png"></div>
+            <div class="content">
+                <h2>Portfolio</h2>
+                <p>Designed and implemented a personal portfolio website with a custom HTML/CSS frontend, server-side logic handled by
+                Node.js and Express, and PostgreSQL for persistent data storage.</p>
+            </div>
+        </div>
+
+        <a href="https://github.com/tannu371/Portfolio" class="card-link"></a>
+        <div class=card>
+            <div class="img"><img src="./assets/images/portfolio.png"></div>
+            <div class="content">
+                <h2>Portfolio</h2>
+                <p>Designed and implemented a personal portfolio website with a custom HTML/CSS frontend, server-side logic handled by
+                Node.js and Express, and PostgreSQL for persistent data storage.</p>
+            </div>
         </div>
 
         <div class=card>
-            <div class="img"></div>
-            <div class="content"></div>
-        </div>
-
-        <div class=card>
-            <div class="img"></div>
-            <div class="content"></div>
+            <div class="img"><img src="./assets/images/portfolio.png"></div>
+            <div class="content">
+                <h2>Portfolio</h2>
+                <p>Designed and implemented a personal portfolio website with a custom HTML/CSS frontend, server-side logic handled by
+                Node.js and Express, and PostgreSQL for persistent data storage.</p>
+            </div>
         </div>
 
     </div>
 
-    <h1>Pastimes</h1>
+    </section>
+
+    <section >
+    <h1 id="pastimes">Pastimes</h1>
     <div class="pastime">
         <div class=card>
             <div class="wrapper">
@@ -91,12 +132,12 @@
         </div>
 
     </div>
+    </section>
 
 
 
-    <hr>
-
-    <h1>Get In Touch</h1>
+    <hr id="contact">
+    <h1 style="margin: 10vh 0vh;">Get In Touch</h1>
     <button><a href="mailto:tactfultannu@gmail.com">Contact Me</a></button>
 
 
