@@ -149,7 +149,7 @@
                     <ul class="about-facts">
                         <li>
                             <span class="fact-icon">🔭</span>
-                            <span>Currently building: <strong>AI powered book scanner from bookshelf</strong></span>
+                            <span>Recently shipped: <strong>ShelfScanner — AI-powered book discovery app</strong></span>
                         </li>
                         <li>
                             <span class="fact-icon">🌱</span>
@@ -372,15 +372,13 @@
                 <!-- Shelf Scanner -->
                 <article class="project-card reveal" id="proj-shelf">
                     <div class="card-glow"></div>
-                    <div class="card-image browser-frame">
-                        <div class="browser-bar">
-                            <span class="dot dot-red"></span>
-                            <span class="dot dot-yellow"></span>
-                            <span class="dot dot-green"></span>
-                            <span class="browser-url">shelf-scanner — AI powered book discovery</span>
-                        </div>
-                        <!-- <div class="browser-screen">
-                            <img src="./assets/images/shelf-scanner.png" alt="Shelf Scanner screenshot" />
+                    <div class="card-image phone-frame-wrap">
+                        <div class="shelf-gallery" id="shelfGallery">
+                            <img src="./assets/images/IMG_0436.PNG" alt="ShelfScanner screen 1" />
+                            <img src="./assets/images/IMG_0437.PNG" alt="ShelfScanner screen 2" />
+                            <img src="./assets/images/IMG_0439.PNG" alt="ShelfScanner screen 4" />
+                            <img src="./assets/images/IMG_0440.PNG" alt="ShelfScanner screen 5" />
+                            <img src="./assets/images/IMG_0441.PNG" alt="ShelfScanner screen 6" />
                         </div>
                         <div class="card-overlay">
                             <a href="https://github.com/tannu371/shelf-scanner" target="_blank" rel="noopener"
@@ -391,19 +389,24 @@
                                 </svg>
                                 View on GitHub
                             </a>
+                        </div>
+                        <!-- scroll arrows -->
+                        <!-- <div class="shelf-gallery-nav">
+                            <button class="shelf-arrow" id="shelfPrev" aria-label="Previous">&#8249;</button>
+                            <button class="shelf-arrow" id="shelfNext" aria-label="Next">&#8250;</button>
                         </div> -->
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
                             <span class="card-number">03</span>
-                            <span class="card-badge wip-badge">🚧 In Progress</span>
+                            <span class="card-badge featured-badge">⭐ Featured</span>
                         </div>
                         <h3 class="card-title">ShelfScanner — AI Powered Book Discovery</h3>
                         <p class="card-desc">
                             Point your camera at a bookshelf and instantly get book details and
                             personalised recommendations. Uses YOLOv11 (on-device TFLite) to detect
                             book spines, PaddleOCR to extract titles &amp; authors, and SBERT
-                            embeddings with pgvector KNN for "Books like this" suggestions.
+                            embeddings with pgvector KNN for &ldquo;Books like this&rdquo; suggestions.
                         </p>
                         <div class="card-tech">
                             <span>Flutter</span><span>FastAPI</span><span>YOLOv11</span><span>PaddleOCR</span><span>pgvector</span>

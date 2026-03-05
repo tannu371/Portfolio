@@ -807,11 +807,29 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   gap: 2rem;
 }
 
+/* ShelfScanner spans full width so gallery has room */
+#proj-shelf {
+  grid-column: 1 / -1;
+}
+
+/* On full-width card, lay out image strip + text side by side */
+@media (min-width: 768px) {
+  #proj-shelf {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    flex-direction: unset;
+  }
+  #proj-shelf .card-image.phone-frame-wrap {
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+  }
+}
+
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  overflow: hidden;
+  overflow: clip;              /* clip visually but don't block child scroll */
   backdrop-filter: blur(20px);
   transition: border-color var(--transition-med), transform var(--transition-med), box-shadow var(--transition-med);
   position: relative;
@@ -923,11 +941,12 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   display: grid;
   place-items: center;
   opacity: 0;
+  pointer-events: none;          /* don't block gallery scroll when hidden */
   transition: opacity var(--transition-med);
   backdrop-filter: blur(4px);
 }
 
-.project-card:hover .card-overlay { opacity: 1; }
+.project-card:hover .card-overlay { opacity: 1; pointer-events: auto; }
 
 .overlay-btn {
   display: flex;
@@ -1021,6 +1040,112 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
 }
 
 .card-link-btn:hover { gap: 10px; color: var(--text-primary); }
+
+/* ─── PHONE FRAME MOCKUP (Shelf Scanner) ─────────────────────── */
+.phone-frame-wrap {
+  position: relative;
+  background: linear-gradient(135deg, #0a1628, #101e3a);
+  border-bottom: 1px solid var(--border);
+  overflow: visible;
+  overflow-y: hidden;
+  min-height: 280px;
+}
+
+.shelf-mockup-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .shelf-mockup-img { transform: scale(1.04); }
+
+/* ─── SHELF SCANNER HORIZONTAL SCROLL GALLERY ────────────────── */
+.shelf-gallery {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  cursor: grab;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.shelf-gallery:active { cursor: grabbing; }
+.shelf-gallery::-webkit-scrollbar { display: none; }
+
+.shelf-gallery img {
+  flex: 0 0 130px;
+  width: 130px !important;
+  min-width: 130px;
+  max-width: 130px !important;
+  height: 260px !important;
+  object-fit: contain;
+  object-position: top center;
+  border-radius: var(--radius-md);
+  scroll-snap-align: start;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform var(--transition-med), box-shadow var(--transition-med);
+  background: #0a0f1e;
+}
+
+.shelf-gallery img:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.25);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* scroll hint fade on right */
+.phone-frame-wrap::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  background: linear-gradient(to right, transparent, rgba(10, 22, 40, 0.85));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ─── SHELF GALLERY ARROW BUTTONS ───────────────────────────── */
+.shelf-gallery-nav {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  display: flex;
+  gap: 6px;
+  z-index: 4;
+}
+
+.shelf-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  user-select: none;
+}
+
+.shelf-arrow:hover {
+  background: rgba(59, 130, 246, 0.38);
+  transform: scale(1.1);
+}
 
 /* ─── PASTIMES ───────────────────────────────────────────────── */
 .pastimes-section {
@@ -1257,6 +1382,20 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   background: rgba(251, 191, 36, 0.1);
   border: 1px solid rgba(251, 191, 36, 0.3);
   color: #fbbf24;
+}
+
+/* ─── LARGE SCREEN — compact cards ──────────────────────────── */
+@media (min-width: 1280px) {
+  /* smaller card content on wide screens */
+  .card-body       { padding: 1.4rem 1.6rem; }
+  .card-title      { font-size: 1.15rem; }
+  .card-desc       { font-size: 0.85rem; line-height: 1.7; }
+
+  /* tighter browser frame image */
+  .browser-screen img { max-height: 200px; }
+
+  /* pastime cards */
+  .pastime-card    { padding: 2rem; }
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */

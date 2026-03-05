@@ -191,6 +191,51 @@ document.getElementById('year').textContent = new Date().getFullYear();
   });
 })();
 
+/* ─── SHELF GALLERY ARROW BUTTONS ───────────────────────────── */
+(function () {
+  const gallery = document.getElementById('shelfGallery');
+  const prev    = document.getElementById('shelfPrev');
+  const next    = document.getElementById('shelfNext');
+  if (!gallery || !prev || !next) return;
+
+  const STEP = 170; // 160px image + 10px gap
+
+  next.addEventListener('click', (e) => {
+    e.stopPropagation();
+    gallery.scrollBy({ left: STEP, behavior: 'smooth' });
+  });
+
+  prev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    gallery.scrollBy({ left: -STEP, behavior: 'smooth' });
+  });
+})();
+
+/* ─── DRAG-TO-SCROLL for SHELF GALLERY ──────────────────────── */
+(function () {
+  document.querySelectorAll('.shelf-gallery').forEach(gallery => {
+    let isDown = false, startX = 0, scrollLeft = 0;
+
+    gallery.addEventListener('mousedown', e => {
+      isDown = true;
+      gallery.style.userSelect = 'none';
+      startX = e.pageX - gallery.offsetLeft;
+      scrollLeft = gallery.scrollLeft;
+    });
+
+    gallery.addEventListener('mouseleave', () => { isDown = false; gallery.style.userSelect = ''; });
+    gallery.addEventListener('mouseup',    () => { isDown = false; gallery.style.userSelect = ''; });
+
+    gallery.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x    = e.pageX - gallery.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      gallery.scrollLeft = scrollLeft - walk;
+    });
+  });
+})();
+
 /* ─── SMOOTH ACTIVE NAV HIGHLIGHT ────────────────────────────── */
 (function () {
   const sections = document.querySelectorAll('section[id], .hero[id]');
