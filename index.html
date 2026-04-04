@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="hacker">
 
 <head>
     <meta charset="UTF-8" />
@@ -12,13 +12,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
 
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+
+    <!-- ─── SCANLINE OVERLAY (hacker mode) ─────────────────────── -->
+    <div class="scanline-overlay" id="scanlineOverlay"></div>
 
     <!-- ─── CURSOR ─────────────────────────────────────────────── -->
     <div class="cursor" id="cursor"></div>
@@ -37,6 +40,14 @@
             <li><a href="#pastimes">Pastimes</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <!-- ─── THEME TOGGLE ──────────────────────────────────── -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" onclick="toggleTheme()">
+            <span class="toggle-track">
+                <span class="toggle-icon toggle-hacker" title="Hacker Mode">⌨️</span>
+                <span class="toggle-icon toggle-clean" title="Clean Mode">☀️</span>
+                <span class="toggle-thumb" id="toggleThumb"></span>
+            </span>
+        </button>
         <button class="hamburger" id="hamburger" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
@@ -101,7 +112,11 @@
             </div>
             <div class="floating-card card-3">
                 <span class="fc-icon">🚀</span>
-                <span class="fc-label">Full Stack</span>
+                <span class="fc-label">Web Apps</span>
+            </div>
+            <div class="floating-card card-4">
+                <span class="fc-icon">📱</span>
+                <span class="fc-label">Mobile Apps</span>
             </div>
         </div>
     </section>
