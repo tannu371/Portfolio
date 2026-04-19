@@ -108,20 +108,36 @@ body::after {
 
 /* ─── THEME TOGGLE ───────────────────────────────────────────── */
 .theme-toggle {
-  background: none; border: none; cursor: pointer;
-  padding: 6px; margin-left: 1rem; flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 1rem;
+  flex-shrink: 0;
   position: relative; z-index: 10;
+  border-radius: 999px;
+  transition: transform var(--transition-fast), background var(--transition-fast);
 }
 
 .theme-toggle * {
   pointer-events: none;
 }
 
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--border-hover);
+  outline-offset: 3px;
+}
+
 .toggle-track {
   display: flex; align-items: center;
-  width: 64px; height: 30px;
-  background: rgba(0, 255, 65, 0.12);
-  border: 1px solid var(--border);
+  width: 66px; height: 32px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
   border-radius: 100px;
   position: relative;
   padding: 0 6px;
@@ -130,22 +146,30 @@ body::after {
 }
 
 [data-theme="light"] .toggle-track {
-  background: rgba(99, 102, 241, 0.10);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .toggle-icon {
   font-size: 0.8rem; z-index: 2;
-  transition: opacity 0.3s;
+  transition: opacity 0.25s ease, transform 0.25s ease;
   line-height: 1;
   pointer-events: none;
+  opacity: 0.55;
+  transform: scale(0.98);
 }
+
+.toggle-hacker { opacity: 0.95; transform: scale(1); }
+[data-theme="light"] .toggle-hacker { opacity: 0.55; transform: scale(0.98); }
+[data-theme="light"] .toggle-clean  { opacity: 0.95; transform: scale(1); }
 
 .toggle-thumb {
   position: absolute; top: 3px; left: 3px;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
+  width: 26px; height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255,255,255,0.10) inset;
   transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), background 0.4s, box-shadow 0.4s;
   pointer-events: none;
 }
@@ -201,6 +225,7 @@ body::after {
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -216,6 +241,16 @@ body {
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
+
+/* Better anchor scroll with fixed navbar */
+:target {
+  scroll-margin-top: 90px;
+}
+
+/* More consistent tap highlight on mobile */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* ─── CUSTOM CURSOR ──────────────────────────────────────────── */
 .cursor {
@@ -330,7 +365,7 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 10px;
 }
 
 .hamburger span {
@@ -520,7 +555,7 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   animation: fadeSlideUp 1s ease 0.2s both;
-  height: 2.2rem;
+  min-height: 2.2rem;
   overflow: hidden;
 }
 
@@ -653,9 +688,10 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   animation: floatCard 6s ease-in-out infinite alternate;
 }
 
-.card-1 { top: 12%; left: 5%; animation-delay: 0s; }
-.card-2 { top: 45%; right: 5%; animation-delay: -2s; }
-.card-3 { bottom: 15%; left: 20%; animation-delay: -4s; }
+.card-1 { top: 10%; left: 5%;   animation-delay: 0s;    --rot: -2deg; }
+.card-2 { top: 40%; right: 5%;  animation-delay: -1.5s; --rot:  2deg; }
+.card-3 { bottom: 38%; left: 6%; animation-delay: -3s;  --rot: -1deg; }
+.card-4 { bottom: 8%; right: 38%; animation-delay: -4.5s; --rot: 1.5deg; }
 
 .fc-icon { font-size: 1.4rem; }
 .fc-label { color: var(--text-primary); }
@@ -1561,6 +1597,20 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   .projects-grid { grid-template-columns: 1fr; }
   .pastimes-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
+
+  /* Make cards span full width on smaller screens */
+  .projects-grid,
+  .pastimes-grid,
+  .skills-grid {
+    justify-items: stretch;
+  }
+  .project-card,
+  .pastime-card,
+  .skill-category {
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1576,17 +1626,42 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
     gap: 1.5rem;
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(20px);
+    max-height: calc(100dvh - 70px);
+    overflow: auto;
   }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
 
   .hero {
     padding: 100px 1.5rem 60px;
-    text-align: left;
+    text-align: center;
   }
+  .hero-content { margin: 0 auto; max-width: 640px; }
+  .hero-badge { margin-left: auto; margin-right: auto; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
   .hero-badge { font-size: 0.72rem; }
-  .hero-cta { flex-direction: column; align-items: flex-start; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .btn { width: 100%; justify-content: center; }
   .hero-scroll { display: none; }
+
+  /* Avoid role text overflow on small screens */
+  .hero-roles {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: unset;
+    height: auto;
+    overflow: visible;
+  }
+  .role-static { text-align: center; }
+  .role-static { font-size: 0.95em; }
+  .role-rotate { width: 100%; align-items: center; }
+  .role-item,
+  .role-item.active {
+    position: relative;
+    white-space: normal;
+    line-height: 1.25;
+  }
 
   .about-section,
   .skills-section,
@@ -1594,9 +1669,22 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   .pastimes-section,
   .contact-section { padding: 80px 0; }
 
+  /* Center section headings/labels on mobile (cards remain readable) */
+  .section-container { text-align: center; }
+  .section-label { justify-content: center; }
+  .projects-grid,
+  .pastimes-grid,
+  .skills-grid { justify-items: stretch; }
+  .project-card,
+  .pastime-card,
+  .skill-category { text-align: left; }
+  .card-body { text-align: left; }
+
   .about-grid { gap: 2rem; }
   .about-photo-wrap,
   .photo-clip { width: 220px; }
+  .about-text { margin: 0 auto; }
+  .about-facts { max-width: 560px; margin-left: auto; margin-right: auto; }
   .about-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
   .strength-cards { gap: 8px; }
   .strength-card { padding: 12px 8px; }
@@ -1607,12 +1695,39 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
   .socials-row { gap: 0.75rem; }
 
   .btn-large { padding: 14px 28px; font-size: 0.95rem; }
+
+  /* Stop horizontal sliding on mobile: remove horizontal gallery */
+  .phone-frame-wrap { overflow: hidden; }
+  .phone-frame-wrap::after { display: none; }
+  .shelf-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+    overflow: hidden;
+    scroll-snap-type: none;
+    cursor: default;
+    height: auto;
+    align-items: stretch;
+  }
+  .shelf-gallery img {
+    flex: none;
+    width: 100% !important;
+    min-width: 0;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 520px;
+    object-fit: contain;
+    scroll-snap-align: unset;
+  }
 }
 
 @media (max-width: 480px) {
   .section-heading { font-size: 1.7rem; }
   .hero-name { font-size: clamp(2.2rem, 10vw, 3.5rem); }
   .contact-inner { border-radius: var(--radius-lg); }
+  .hero { padding-left: 1rem; padding-right: 1rem; }
+  .hero-content { max-width: 520px; }
 
   .about-photo-wrap,
   .photo-clip { width: 180px; }
@@ -1624,6 +1739,13 @@ body.cursor-hover .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
 
   .pastime-card { padding: 1.5rem; }
   .sketch-gallery { gap: 6px; }
+
+  /* Reduce oversized horizontal padding on very small screens */
+  .navbar { padding: 0 1rem; }
+  .section-container { padding: 0 1rem; }
+
+  /* Keep big buttons easy to tap */
+  .btn { padding: 14px 18px; }
 
   .footer { font-size: 0.75rem; padding: 1.5rem; }
 }
